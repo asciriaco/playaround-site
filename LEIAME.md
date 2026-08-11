@@ -24,7 +24,29 @@ tinha onde ser servido:
 - **O `playaround.pt` está registado mas não resolve** — tem registos de email
   e mais nada, e o site fica para mais tarde.
 
-## Onde publicar
+## Publicado
+
+**No ar desde 11 de agosto de 2026**, em GitHub Pages a partir do repositório
+público `asciriaco/playaround-site`:
+
+| | |
+|---|---|
+| Política de privacidade | https://asciriaco.github.io/playaround-site/privacidade.html |
+| Eliminação de conta | https://asciriaco.github.io/playaround-site/apagar-conta.html |
+
+⚠ **O `site/` vive AQUI, neste repositório.** O `playaround-site` é só o
+espelho publicado — não se edita lá, senão as duas cópias divergem. Depois de
+mudar alguma coisa:
+
+```powershell
+git subtree split --prefix=site -b _site_publicacao
+git push site _site_publicacao:main
+git branch -D _site_publicacao
+```
+
+(o remoto `site` aponta para `https://github.com/asciriaco/playaround-site.git`)
+
+## Como foi publicado
 
 Qualquer alojamento estático serve. O caminho mais curto é o **GitHub Pages a
 partir de um repositório público** — os ficheiros aqui não têm nada de privado,
