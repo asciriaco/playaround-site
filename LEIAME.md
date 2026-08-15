@@ -48,7 +48,14 @@ que deixe de responder é motivo de suspensão da app, não é um aviso.
 | nome | tipo | conteúdo |
 |---|---|---|
 | `playaround.pt` | A | `185.199.108.153` … `.111.153` (os quatro do GitHub Pages) |
-| `www.playaround.pt` | CNAME | `asciriaco.github.io.` |
+| `www.playaround.pt` | CNAME | `asciriaco.github.io` |
+
+⚠ **Sem o ponto final.** Com `asciriaco.github.io.` o painel da Dominios.pt
+aceita o registo, mostra-o na tabela e **não o grava** — não dá erro nenhum. Só
+se descobre perguntando ao nameserver (`nslookup -type=CNAME www.playaround.pt
+dns1.host-redirect.com`), que responde «Non-existent domain» enquanto a tabela
+do painel diz que está lá. É o mesmo feitio dos TXT, que só entram **com**
+aspas.
 
 ⚠ **Os registos de email não se tocam** — `resend._domainkey`, o MX e o SPF de
 `send.playaround.pt`, e o `_dmarc`. São de um serviço diferente e apagá-los
