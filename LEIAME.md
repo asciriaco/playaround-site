@@ -1,7 +1,4 @@
-# site/ — as páginas públicas que a Play Store exige
-
-Três ficheiros estáticos. Sem código a correr, sem base de dados, sem nada para
-manter em pé.
+# site/ — as páginas públicas e a app no browser
 
 | | |
 |---|---|
@@ -9,6 +6,7 @@ manter em pé.
 | `privacidade.html` | a Política de Privacidade — **gerada**, não editar aqui |
 | `apagar-conta.html` | como pedir a eliminação da conta (pt + en) |
 | `estilo.css` | a folha de estilo, partilhada pelas três |
+| `webapp/` | **a app a correr no browser** — ver o fundo desta página |
 
 ## Porque é que isto existe
 
@@ -33,6 +31,7 @@ público `asciriaco/playaround-site`:
 |---|---|
 | Política de privacidade | https://asciriaco.github.io/playaround-site/privacidade.html |
 | Eliminação de conta | https://asciriaco.github.io/playaround-site/apagar-conta.html |
+| **A app no browser** | https://asciriaco.github.io/playaround-site/webapp/ |
 
 ⚠ **O `site/` vive AQUI, neste repositório.** O `playaround-site` é só o
 espelho publicado — não se edita lá, senão as duas cópias divergem. Depois de
@@ -72,6 +71,47 @@ gerar — escrever à mão no HTML divergiu da fonte à terceira revisão.
 
 A cópia aqui tem uma diferença face à original: a folha de estilo saiu de
 dentro do `<style>` para o `estilo.css`, para as três páginas a partilharem.
+
+## `webapp/` — a app no browser
+
+É **a mesma app**, o mesmo código de `playaround/app`, compilado para browser.
+Existe porque metade dos primeiros testadores tem iPhone e a versão iOS ainda
+não existe: no browser entra toda a gente, e no iPhone dá para «Adicionar ao
+ecrã principal» e ficar com um ícone como se fosse instalada.
+
+Para voltar a publicar depois de mexer na app:
+
+```powershell
+cd C:\phc_sql\playaround\app
+& C:\flutter\bin\flutter.bat build web --release --base-href /playaround-site/webapp/
+Remove-Item C:\phc_sql\playaround\site\webapp -Recurse -Force
+Copy-Item C:\phc_sql\playaround\app\build\web C:\phc_sql\playaround\site\webapp -Recurse
+# e depois o subtree split/push de cima
+```
+
+⚠ **O `--base-href` não é opcional.** Sem ele a app fica à procura dos ficheiros
+na raiz do domínio (`/main.dart.js`) e o que aparece é um ecrã branco, sem erro
+nenhum visível a não ser na consola.
+
+⚠ **Só funciona porque as imagens passaram a ser desenhadas em `<img>`** — ver
+`app/lib/custom_code/widgets/imagem_da_rede.dart`. Dez dos quinze sites das
+fontes não enviam CORS, e o Flutter web, ao contrário do Android, obedece à
+política de mesma origem: antes disto a app aparecia no browser com um buraco
+cinzento onde devia estar cada fotografia.
+
+**O que não funciona no browser**, e é bom saber antes de alguém perguntar:
+
+- **Os links `playaround://evento/123`** — são de app instalada. No browser um
+  evento partilha-se pelo endereço da própria página.
+- **A localização é menos precisa.** O browser dá a posição por wi-fi/IP em vez
+  do GPS, e pergunta sempre que se abre a página.
+- **A primeira visita puxa ~10 MB** (o motor do Flutter). Depois fica em cache e
+  abre num instante. Numa rede móvel fraca, a primeira vez custa.
+
+**A pasta pesa 33 MB no repositório** (o `canvaskit` traz várias variantes e o
+browser só descarrega uma). É muito para um repositório git, e cada publicação
+acrescenta mais uma cópia dos ficheiros grandes. Se um dia incomodar, o sítio
+para isto é um alojamento estático a sério, não o git.
 
 ## Porque é que a página de eliminação não tem um botão que apague
 
