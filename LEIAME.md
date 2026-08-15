@@ -29,9 +29,30 @@ público `asciriaco/playaround-site`:
 
 | | |
 |---|---|
-| Política de privacidade | https://asciriaco.github.io/playaround-site/privacidade.html |
-| Eliminação de conta | https://asciriaco.github.io/playaround-site/apagar-conta.html |
-| **A app no browser** | https://asciriaco.github.io/playaround-site/webapp/ |
+| **A app no browser** | **https://playaround.pt/** (a raiz reencaminha para `/webapp/`) |
+| Política de privacidade | https://playaround.pt/privacidade.html |
+| Eliminação de conta | https://playaround.pt/apagar-conta.html |
+| O que é a Play'around | https://playaround.pt/sobre.html |
+
+**Desde 15 de agosto de 2026 o domínio é o `playaround.pt`.** O
+`asciriaco.github.io/playaround-site/*` continua a responder, mas **reencaminha**
+(301) para o domínio novo — é o GitHub que o faz sozinho a partir do momento em
+que há um `CNAME` no repositório.
+
+⚠ **Os dois URLs na Play Console foram actualizados no mesmo dia.** Não se deixa
+uma política de privacidade a viver de um reencaminhamento: um URL de política
+que deixe de responder é motivo de suspensão da app, não é um aviso.
+
+**O DNS, no painel da Dominios.pt:**
+
+| nome | tipo | conteúdo |
+|---|---|---|
+| `playaround.pt` | A | `185.199.108.153` … `.111.153` (os quatro do GitHub Pages) |
+| `www.playaround.pt` | CNAME | `asciriaco.github.io.` |
+
+⚠ **Os registos de email não se tocam** — `resend._domainkey`, o MX e o SPF de
+`send.playaround.pt`, e o `_dmarc`. São de um serviço diferente e apagá-los
+partia o envio de email sem dar erro nenhum aqui.
 
 ⚠ **O `site/` vive AQUI, neste repositório.** O `playaround-site` é só o
 espelho publicado — não se edita lá, senão as duas cópias divergem. Depois de
@@ -83,15 +104,16 @@ Para voltar a publicar depois de mexer na app:
 
 ```powershell
 cd C:\phc_sql\playaround\app
-& C:\flutter\bin\flutter.bat build web --release --base-href /playaround-site/webapp/
+& C:\flutter\bin\flutter.bat build web --release --base-href /webapp/
 Remove-Item C:\phc_sql\playaround\site\webapp -Recurse -Force
 Copy-Item C:\phc_sql\playaround\app\build\web C:\phc_sql\playaround\site\webapp -Recurse
 # e depois o subtree split/push de cima
 ```
 
-⚠ **O `--base-href` não é opcional.** Sem ele a app fica à procura dos ficheiros
-na raiz do domínio (`/main.dart.js`) e o que aparece é um ecrã branco, sem erro
-nenhum visível a não ser na consola.
+⚠ **O `--base-href` não é opcional, e o valor mudou com o domínio.** Era
+`/playaround-site/webapp/` enquanto o endereço era o `github.io`; com domínio
+próprio o site é servido da **raiz** e passou a ser `/webapp/`. Errar isto não
+dá erro: dá um **ecrã branco**, e a única pista fica na consola do browser.
 
 ⚠ **Só funciona porque as imagens passaram a ser desenhadas em `<img>`** — ver
 `app/lib/custom_code/widgets/imagem_da_rede.dart`. Dez dos quinze sites das
