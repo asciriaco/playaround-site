@@ -1,0 +1,6 @@
+Este ficheiro vazio desliga o Jekyll no GitHub Pages.
+
+Sem ele, o Pages passa tudo pelo Jekyll antes de servir, e o Jekyll deita fora
+ficheiros e pastas começados por `_` ou por ponto. A app compilada para browser
+tem ficheiros nessas condições, e o resultado seria um ecrã branco sem
+explicação — o pior tipo de avaria, porque não deixa rasto nenhum.
