@@ -6,45 +6,42 @@
 <meta name="robots" content="index,follow">
 <title>Play&rsquo;around</title>
 <link rel="stylesheet" href="estilo.css">
-</head>
-<body>
 
 <!--
-  Página de entrada mínima, e mínima de propósito.
+  A raiz do domínio abre a app.
 
-  Existe porque a Google Play exige URLs públicos para a política de
-  privacidade e para o pedido de eliminação de conta, e um endereço que devolva
-  404 na raiz é um mau cartão de visita para quem lá vai parar. Quando o
-  playaround.pt estiver de pé, isto passa a ser um redireccionamento ou dá
-  lugar ao site a sério.
+  Antes isto era uma página de entrada mínima, feita só para o endereço não
+  devolver 404 enquanto a Google Play exigia URLs públicos. Agora que o
+  playaround.pt aponta para aqui, quem escreve o endereço quer a app — não um
+  cartaz sobre ela. A página de entrada não se perdeu: está em `sobre.html`.
+
+  ⚠ O redireccionamento é feito por `<meta refresh>` e não por JavaScript, para
+  funcionar mesmo com o JavaScript desligado. E há um link visível por baixo,
+  para quem chegue aqui com o refresh bloqueado não ficar num beco.
 -->
+<meta http-equiv="refresh" content="0; url=webapp/">
+<link rel="canonical" href="https://playaround.pt/webapp/">
+</head>
+<body>
 
 <div class="marca"></div>
 
 <div class="folha">
   <header>
     <p class="eyebrow">Play&rsquo;around</p>
-    <h1>Eventos para crianças, num sítio só</h1>
+    <h1>A abrir a app&hellip;</h1>
   </header>
 
-  <p>A Play&rsquo;around reúne o que há para fazer com crianças &mdash;
-  espetáculos, oficinas, desporto, museus, colónias de férias &mdash; recolhido
-  automaticamente das agendas públicas de dezenas de fontes, em Portugal e
-  noutros países.</p>
-
-  <p>É gratuita e funciona inteira sem conta.</p>
+  <p>Se não acontecer nada em dois segundos,
+  <a href="webapp/"><strong>abre aqui</strong></a>.</p>
 
   <div class="resumo">
-    <h2>Documentos</h2>
+    <h2>Também aqui</h2>
     <ul>
+      <li><a href="sobre.html">O que é a Play&rsquo;around</a></li>
       <li><a href="privacidade.html">Política de Privacidade</a></li>
       <li><a href="apagar-conta.html">Como apagar a tua conta</a></li>
     </ul>
-  </div>
-
-  <div class="contacto">
-    <p><strong>Contacto:</strong>
-    <a href="mailto:applayaround@gmail.com">applayaround@gmail.com</a></p>
   </div>
 </div>
 
