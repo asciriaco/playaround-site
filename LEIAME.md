@@ -110,10 +110,10 @@ ecrã principal» e ficar com um ícone como se fosse instalada.
 Para voltar a publicar depois de mexer na app:
 
 ```powershell
-cd C:\phc_sql\playaround\app
+cd C:\claudecode\playaround\app
 & C:\flutter\bin\flutter.bat build web --release --base-href /webapp/
-Remove-Item C:\phc_sql\playaround\site\webapp -Recurse -Force
-Copy-Item C:\phc_sql\playaround\app\build\web C:\phc_sql\playaround\site\webapp -Recurse
+Remove-Item C:\claudecode\playaround\site\webapp -Recurse -Force
+Copy-Item C:\claudecode\playaround\app\build\web C:\claudecode\playaround\site\webapp -Recurse
 # e depois o subtree split/push de cima
 ```
 
