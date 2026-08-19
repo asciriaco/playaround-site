@@ -1,0 +1,19 @@
+O 404.html da RAIZ e' uma copia do site/webapp/index.html.
+
+⚠ Tem de estar na RAIZ do site, nao dentro de webapp/. O GitHub Pages so' usa
+o 404.html do topo do repositorio publicado — um site/webapp/404.html e'
+servido se alguem lhe pedir o ficheiro directamente, mas nao e' usado como
+recuo para /webapp/homeScreen. Foi o primeiro sitio onde o pus, e nao pegou.
+
+Para que serve: o Pages serve ficheiros estaticos, e /webapp/homeScreen ou
+/webapp/surpreende-me nao sao ficheiros nenhuns. Sem isto, quem guardasse uma
+pagina da app nos favoritos, ou recebesse um link partilhado, apanhava a
+pagina de erro do GitHub e a app nem arrancava.
+
+Como funciona: o Pages devolve este ficheiro para tudo o que nao encontra.
+Sendo ele o index da app — e trazendo <base href="/webapp/"> la' dentro —, os
+ficheiros carregam do sitio certo, a app arranca e o go_router le' o caminho
+do endereco e abre a pagina pedida.
+
+⚠ RECOPIAR A CADA PUBLICACAO: o `flutter build web` gera um index.html novo e
+nao gera 404 nenhum. Esta' no passo a passo do LEIAME.md.
